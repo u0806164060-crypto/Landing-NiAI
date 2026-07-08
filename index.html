@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Diagnóstico inicial de IA y ciberseguridad para asesorías, gestorías, despachos y pymes en general. Análisis gratuito, sin compromiso.">
+<title>Ni.AI Partners · Diagnóstico IA & Cyber para despachos y pymes</title>
+<script>
+  !(function (t, e) {
+    var o, n, p, r;
+    e.__SV ||
+      ((window.posthog = e),
+      (e._i = []),
+      (e.init = function (i, s, a) {
+        function g(t, e) {
+          var o = e.split(".");
+          (2 == o.length && ((t = t[o[0]]), (e = o[1])),
+            (t[e] = function () {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+            }));
+        }
+        (((p = t.createElement("script")).type = "text/javascript"),
+          (p.crossOrigin = "anonymous"),
+          (p.async = !0),
+          (p.src =
+            s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+            "/static/array.js"),
+          (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+            p,
+            r
+          ));
+        var u = e;
+        for (
+          void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+            u.people = u.people || [],
+            u.toString = function (t) {
+              var e = "posthog";
+              return (
+                ("posthog" !== a && (e += "." + a), t || (e += " (stub)"), e)
+              );
+            },
+            u.people.toString = function () {
+              return u.toString(1) + ".people (stub)";
+            },
+            o =
+              "init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(
+                " "
+              ),
+            n = 0;
+          n < o.length;
+          n++
+        )
+          g(u, o[n]);
+        e._i.push([i, s, a]);
+      }),
+      (e.__SV = 1));
+  })(document, window.posthog || []);
+  posthog.init('phc_AEx6ZvRebL7ZxTbnShsnLiZSRVKQLsoLi6ThZd72sv5E', {
+    api_host: 'https://eu.i.posthog.com',
+    defaults: '2026-05-30',
+    person_profiles: 'identified_only',
+    cookieless_mode: 'always'
+  })
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --paper:#F5F0E6; --paper-2:#ECE4D2; --ink:#1B211F;
+    --ink-mut:rgba(27,33,31,.64); --ink-mut-2:rgba(27,33,31,.42);
+    --jade:#146E4F; --jade-br:#1F8A63; --gold:#9C7635; --gold-soft:#C9A86A;
+    --line:#D9CFB6; --panel:#0C1310; --panel-txt:#F2EEE3;
+    --panel-mut:rgba(242,238,227,.62); --panel-line:#26302B;
+    --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,monospace;
+    --max-w:1120px; --p-rgb:20,110,79;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0E1A15; --paper-2:#122019; --ink:#F2EEE3;
+      --ink-mut:rgba(242,238,227,.66); --ink-mut-2:rgba(242,238,227,.4);
+      --jade:#3FCB9C; --jade-br:#4FE0AC; --gold:#D8B87C; --gold-soft:#D8B87C;
+      --line:#243A30; --panel:#05100B; --p-rgb:63,203,156;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1A15; --paper-2:#122019; --ink:#F2EEE3;
+    --ink-mut:rgba(242,238,227,.66); --ink-mut-2:rgba(242,238,227,.4);
+    --jade:#3FCB9C; --jade-br:#4FE0AC; --gold:#D8B87C; --gold-soft:#D8B87C;
+    --line:#243A30; --panel:#05100B; --p-rgb:63,203,156;
+  }
+  :root[data-theme="light"]{
+    --paper:#F5F0E6; --paper-2:#ECE4D2; --ink:#1B211F;
+    --ink-mut:rgba(27,33,31,.64); --ink-mut-2:rgba(27,33,31,.42);
+    --jade:#146E4F; --jade-br:#1F8A63; --gold:#9C7635; --gold-soft:#C9A86A;
+    --line:#D9CFB6; --panel:#0C1310; --p-rgb:20,110,79;
+  }
+
+  body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:var(--max-w); margin:0 auto; padding:0 2rem; }
+
+  .progress { position:fixed; top:0; left:0; height:3px; width:0; z-index:400; background:linear-gradient(90deg,var(--jade),var(--gold)); box-shadow:0 0 12px rgba(var(--p-rgb),.6); }
+
+  .cur-dot,.cur-ring { position:fixed; top:0; left:0; border-radius:50%; pointer-events:none; z-index:500; }
+  .cur-dot { width:6px; height:6px; background:var(--jade); margin:-3px 0 0 -3px; }
+  .cur-ring { width:34px; height:34px; border:1.5px solid rgba(var(--p-rgb),.55); margin:-17px 0 0 -17px; transition:width .25s, height .25s, margin .25s, background .25s; }
+  .cur-ring.hot { width:54px; height:54px; margin:-27px 0 0 -27px; background:rgba(var(--p-rgb),.08); }
+  @media (pointer:coarse){ .cur-dot,.cur-ring{ display:none; } }
+
+  .marks { position:absolute; inset:28px; pointer-events:none; z-index:3; }
+  .marks span { position:absolute; width:18px; height:18px; }
+  .marks span::before,.marks span::after { content:''; position:absolute; background:var(--corner,var(--jade)); opacity:.55; }
+  .marks span::before { width:100%; height:1.5px; top:50%; }
+  .marks span::after { height:100%; width:1.5px; left:50%; }
+  .marks .tl{top:0;left:0}.marks .tr{top:0;right:0}.marks .bl{bottom:0;left:0}.marks .br{bottom:0;right:0}
+
+  header { position:fixed; top:0; left:0; right:0; z-index:200; transition:background .35s,border-color .35s; border-bottom:1px solid transparent; }
+  header.scrolled { backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--line); background:color-mix(in srgb, var(--paper) 82%, transparent); }
+  .header-inner { display:flex; align-items:center; justify-content:space-between; height:76px; gap:14px; }
+  .logo { font-family:var(--serif); font-size:1.35rem; font-weight:600; letter-spacing:-.2px; }
+  .logo .ai{ color:var(--jade); } .logo .partners{ color:var(--ink-mut-2); font-style:italic; font-weight:400; }
+  .header-actions { display:flex; align-items:center; gap:12px; }
+  .lang-toggle { display:flex; border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+  .lang-toggle button { background:transparent; color:var(--ink-mut); border:none; padding:7px 13px; font-family:var(--mono); font-size:.75rem; font-weight:600; letter-spacing:1px; cursor:pointer; transition:background .2s,color .2s; }
+  .lang-toggle button.active { background:var(--jade); color:var(--paper); }
+  .lang-toggle button:not(.active):hover { color:var(--ink); }
+  .theme-btn { background:transparent; border:1px solid var(--line); border-radius:4px; padding:7px 13px; font-family:var(--mono); font-size:.75rem; letter-spacing:1px; color:var(--ink-mut); cursor:pointer; transition:color .2s,border-color .2s; }
+  .theme-btn:hover { color:var(--ink); border-color:var(--ink-mut-2); }
+
+  .hero { position:relative; min-height:100vh; display:flex; align-items:center; padding:150px 0 120px; overflow:hidden; }
+  .hero-canvas { position:absolute; inset:0; z-index:1; width:100%; height:100%; }
+  .hero-glow { position:absolute; inset:0; z-index:0; background:radial-gradient(ellipse 50% 45% at 72% 30%, rgba(var(--p-rgb),.14), transparent 65%); }
+  .hero-inner { position:relative; z-index:2; max-width:780px; width:100%; }
+  .exp-number { position:absolute; top:150px; right:2rem; z-index:2; font-family:var(--mono); font-size:.7rem; letter-spacing:1px; color:var(--ink-mut-2); text-align:right; line-height:1.6; }
+  .exp-number .k{ color:var(--gold); }
+  .exp-number .k .k-ia{ color:var(--jade); }
+
+  .stamp { display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:.82rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--jade); border:1.5px solid var(--jade); border-radius:4px; padding:9px 16px; margin-bottom:30px; transform:rotate(-2deg); }
+  .hero .stamp{ color:var(--ink); border-color:var(--gold); }
+  .hero .stamp .acc-ia{ color:var(--jade); font-weight:700; letter-spacing:2px; }
+  .hero .stamp .acc-cy{ color:var(--gold); font-weight:700; letter-spacing:2px; }
+  .stamp .dot{ width:6px; height:6px; border-radius:50%; background:var(--gold); }
+
+  .hero h1 { font-family:var(--serif); font-weight:600; font-size:clamp(2.6rem,5.8vw,4.3rem); line-height:1.07; letter-spacing:-.5px; text-wrap:balance; margin-bottom:30px; }
+  .hero h1 .line { display:block; overflow:hidden; }
+  .hero h1 .line > span { display:inline-block; transform:translateY(110%); opacity:0; }
+  .hero h1 em { font-style:normal; position:relative; color:var(--jade); }
+  .hero h1 em::after { content:''; position:absolute; left:0; right:0; bottom:2px; height:2px; background:linear-gradient(90deg,var(--jade),var(--gold)); transform:scaleX(0); transform-origin:left; transition:transform .8s ease 1.1s; }
+  .ready .hero h1 em::after { transform:scaleX(1); }
+
+  .hero .lead { font-size:clamp(1.05rem,1.7vw,1.24rem); color:var(--ink-mut); max-width:520px; border-left:2px solid var(--gold-soft); padding-left:20px; margin-bottom:40px; opacity:0; transform:translateY(16px); transition:opacity .7s ease .95s, transform .7s ease .95s; }
+  .ready .hero .lead { opacity:1; transform:none; }
+  .hero-sub { font-family:var(--mono); font-size:.76rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--jade); margin:-16px 0 26px; }
+
+  .cta { position:relative; display:inline-flex; align-items:center; gap:14px; font-family:var(--sans); font-weight:700; font-size:1.05rem; background:var(--jade); color:#F5F0E6; padding:1rem 1.8rem 1rem 1.5rem; border-radius:4px; border:none; cursor:pointer; box-shadow:0 10px 26px rgba(var(--p-rgb),.3); transition:transform .25s cubic-bezier(.2,.9,.3,1), box-shadow .25s; will-change:transform; overflow:hidden; }
+  .cta .seal { width:26px; height:26px; border-radius:50%; border:1.5px solid currentColor; display:grid; place-items:center; font-family:var(--mono); font-size:.7rem; transition:transform .3s cubic-bezier(.2,1.6,.4,1); flex-shrink:0; }
+  .cta::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%); transform:translateX(-120%); }
+  .cta:hover::after { transform:translateX(120%); transition:transform .7s ease; }
+  .cta:hover .seal { transform:rotate(20deg) scale(.9); }
+  .hero .cta { opacity:0; transform:translateY(16px); transition:opacity .7s ease 1.15s, transform .25s cubic-bezier(.2,.9,.3,1); }
+  .ready .hero .cta { opacity:1; }
+
+  .section-margin { display:flex; align-items:baseline; gap:16px; margin-bottom:44px; }
+  .section-margin .num{ font-family:var(--mono); font-size:.82rem; color:var(--gold); letter-spacing:1px; }
+  .section-margin .rule{ flex:1; height:1px; background:var(--line); transform:scaleX(0); transform-origin:left; transition:transform .8s ease; }
+  .section-margin.reveal-in .rule{ transform:scaleX(1); }
+  .section-margin .label{ font-family:var(--mono); font-size:.78rem; letter-spacing:2px; text-transform:uppercase; color:var(--ink-mut); }
+
+  .will-reveal { opacity:0; transform:translateY(26px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+  .will-reveal.reveal-in { opacity:1; transform:none; }
+
+  section.block { padding:110px 0; border-top:1px solid var(--line); position:relative; }
+  .block h2 { font-family:var(--serif); font-weight:600; font-size:clamp(1.9rem,4vw,2.7rem); line-height:1.14; letter-spacing:-.3px; max-width:640px; margin-bottom:50px; text-wrap:balance; }
+  .block h2 em { font-style:normal; color:var(--jade); }
+
+  .ficha-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--line); border:1px solid var(--line); perspective:1000px; }
+  .ficha { position:relative; background:var(--paper); padding:38px 34px 34px; opacity:0; transform:translateY(28px); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .3s; transform-style:preserve-3d; }
+  .ficha:nth-child(2){ transition-delay:.08s } .ficha:nth-child(3){ transition-delay:.16s } .ficha:nth-child(4){ transition-delay:.24s }
+  .ficha.reveal { opacity:1; transform:translateY(0); }
+  .ficha .tab { position:absolute; top:-1px; left:34px; font-family:var(--mono); font-size:.68rem; letter-spacing:1px; color:var(--paper); background:var(--jade); padding:4px 10px; border-radius:0 0 3px 3px; }
+  .ficha.gold .tab{ background:var(--gold); }
+  .ficha h3 { font-family:var(--serif); font-size:1.28rem; font-weight:600; line-height:1.28; min-height:3.28em; display:flex; align-items:flex-end; margin:14px 0 12px; letter-spacing:-.2px; transform:translateZ(24px); }
+  .ficha p { color:var(--ink-mut); font-size:1rem; transform:translateZ(12px); }
+
+  .problema-cierre { text-align:center; max-width:620px; margin:52px auto 0; }
+  .problema-cierre p { font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.7rem); font-weight:600; line-height:1.32; }
+  .problema-cierre em { font-style:normal; color:var(--jade); }
+  .problema-cierre .cta{ margin-top:30px; }
+
+  .confianza { background:var(--paper-2); }
+  .entregables { background:var(--paper-2); }
+  .entregables .articulo:first-child{ border-top:none; }
+  .declaraciones { display:grid; gap:16px; max-width:700px; }
+  .declara { background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--gold-soft); border-radius:4px; padding:24px 28px; font-size:1.06rem; color:var(--ink-mut); opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .5s cubic-bezier(.2,.7,.2,1), border-left-color .3s; }
+  .declara:nth-child(2){ transition-delay:.08s } .declara:nth-child(3){ transition-delay:.16s } .declara:nth-child(4){ transition-delay:.24s }
+  .declara.reveal { opacity:1; transform:none; }
+  .declara.reveal:hover { border-left-color:var(--jade); transition-delay:0s; }
+  .declara strong{ color:var(--ink); font-weight:600; }
+  .destacado { font-family:var(--serif); font-size:clamp(1.15rem,2.2vw,1.4rem); font-weight:600; color:var(--ink); margin:34px 0 0; max-width:620px; line-height:1.4; }
+  .confianza .cta{ margin-top:36px; }
+
+  .metodo-body { position:relative; padding-left:26px; }
+  .spine { position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--line); }
+  .spine-fill { position:absolute; left:0; top:0; width:100%; height:0; background:linear-gradient(var(--jade),var(--gold)); box-shadow:0 0 10px rgba(var(--p-rgb),.4); }
+  .articulo { display:grid; grid-template-columns:90px 1fr; gap:28px; padding:30px 0; border-top:1px solid var(--line); opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+  .articulo.reveal{ opacity:1; transform:none; }
+  .articulo:last-child{ border-bottom:1px solid var(--line); }
+  .articulo .art-label{ font-family:var(--mono); font-size:.85rem; color:var(--gold); letter-spacing:.5px; padding-top:4px; }
+  .articulo.cyber .art-label{ color:var(--jade); }
+  .articulo h3{ font-family:var(--serif); font-size:1.25rem; font-weight:600; margin-bottom:8px; }
+  .articulo p{ color:var(--ink-mut); font-size:1rem; max-width:620px; }
+
+  .cierre { background:var(--panel); color:var(--panel-txt); overflow:hidden; border-top:1px solid var(--line); padding:120px 0; }
+  .cierre .aurora { position:absolute; inset:-40%; z-index:0; opacity:.8; background:radial-gradient(ellipse 42% 38% at 74% 26%, rgba(31,138,99,.28), transparent 66%), radial-gradient(ellipse 38% 32% at 16% 80%, rgba(201,168,106,.2), transparent 66%); animation:aurora 15s ease-in-out infinite alternate; }
+  @keyframes aurora { 0%{transform:translate(0,0) scale(1) rotate(0)} 50%{transform:translate(4%,3%) scale(1.1) rotate(3deg)} 100%{transform:translate(-3%,-2%) scale(1.05) rotate(-2deg)} }
+  .cierre-inner { position:relative; z-index:2; max-width:640px; }
+  .cierre .stamp{ color:var(--gold-soft); border-color:var(--gold-soft); }
+  .cierre .stamp .dot{ background:var(--jade-br); }
+  .cierre h2{ font-family:var(--serif); font-weight:600; font-size:clamp(2rem,4.4vw,3rem); line-height:1.14; letter-spacing:-.5px; margin-bottom:22px; text-wrap:balance; }
+  .cierre h2 em{ font-style:normal; color:var(--gold-soft); }
+  .cierre p.desc{ color:var(--panel-mut); font-size:1.1rem; max-width:500px; margin-bottom:40px; }
+  .cierre .cta{ background:var(--jade-br); color:#06110C; }
+
+  /* formulario (overlay a pantalla completa) */
+  .contacto, .legal-overlay { position:fixed; inset:0; z-index:600; background:var(--paper); overflow-y:auto; opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s ease; }
+  .contacto.open, .legal-overlay.open { opacity:1; visibility:visible; }
+  body.no-scroll { overflow:hidden; }
+  .overlay-bar { position:sticky; top:0; z-index:2; background:color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .overlay-bar-inner { max-width:620px; margin:0 auto; padding:0 2rem; height:76px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+  .overlay-bar .logo { font-size:1.2rem; }
+  .overlay-actions { display:flex; align-items:center; gap:12px; }
+  .overlay-close { background:transparent; border:1px solid var(--line); border-radius:4px; width:38px; height:38px; display:grid; place-items:center; color:var(--ink-mut); cursor:pointer; transition:color .2s, border-color .2s; }
+  .overlay-close:hover { color:var(--ink); border-color:var(--ink-mut-2); }
+  .overlay-close svg { width:18px; height:18px; }
+  .contacto-inner { max-width:620px; margin:0 auto; padding:56px 2rem 90px; }
+  @media (max-width:720px){ .overlay-bar-inner{ padding:0 1.3rem; } .contacto-inner{ padding:44px 1.3rem 80px; } }
+  .contacto h2 { font-family:var(--serif); font-weight:600; font-size:clamp(2rem,4.4vw,2.9rem); line-height:1.12; letter-spacing:-.4px; margin-bottom:16px; text-wrap:balance; }
+  .contacto h2 em{ font-style:normal; color:var(--jade); }
+  .contacto .sub { font-size:1.08rem; color:var(--ink-mut); max-width:520px; margin-bottom:44px; }
+  .form-field { margin-bottom:20px; }
+  .form-field label { display:block; font-size:1rem; font-weight:600; color:var(--ink); margin-bottom:10px; }
+  .form-field input, .form-field textarea { width:100%; font-family:var(--sans); font-size:1rem; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:4px; padding:.95rem 1.1rem; transition:border-color .2s, box-shadow .2s; }
+  .form-field textarea { resize:vertical; min-height:120px; line-height:1.5; }
+  .form-field input::placeholder, .form-field textarea::placeholder { color:var(--ink-mut-2); }
+  .form-field input:focus, .form-field textarea:focus { outline:none; border-color:var(--jade); box-shadow:0 0 0 3px rgba(var(--p-rgb),.14); }
+  .contacto form .cta { width:100%; justify-content:center; margin-top:6px; }
+  .form-note { font-size:.88rem; color:var(--ink-mut); text-align:center; margin-top:18px; }
+  .form-note .shield{ color:var(--jade); }
+  .form-status { font-size:.92rem; text-align:center; margin-top:14px; display:none; }
+  .form-status.show{ display:block; }
+  .form-status.ok{ color:var(--jade); }
+  .form-status.err{ color:#b8452f; }
+  .contacto-datos { margin-top:48px; padding-top:36px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:20px 48px; }
+  .dato { display:flex; align-items:center; gap:12px; }
+  .dato-ico { width:42px; height:42px; flex-shrink:0; display:grid; place-items:center; border:1px solid var(--line); border-radius:4px; color:var(--jade); }
+  .dato-ico svg{ width:20px; height:20px; }
+  .dato-label { font-family:var(--mono); font-size:.7rem; letter-spacing:1px; text-transform:uppercase; color:var(--ink-mut-2); }
+  .dato-valor { font-size:1.05rem; font-weight:600; color:var(--ink); }
+  a.dato-valor:hover{ color:var(--jade); }
+
+  footer { padding:40px 0; text-align:center; font-family:var(--mono); font-size:.72rem; letter-spacing:1px; color:var(--ink-mut-2); border-top:1px solid var(--line); }
+  .footer-legal { margin-top:14px; }
+  .footer-legal a { color:var(--ink-mut-2); text-decoration:underline; text-underline-offset:3px; margin:0 8px; }
+  .footer-legal a:hover { color:var(--jade); }
+
+  .legal-inner { max-width:620px; margin:0 auto; padding:56px 2rem 90px; }
+  @media (max-width:720px){ .legal-inner{ padding:44px 1.3rem 80px; } }
+  .legal-inner h2 { font-family:var(--serif); font-weight:600; font-size:clamp(1.7rem,3.6vw,2.3rem); line-height:1.16; letter-spacing:-.3px; margin-bottom:30px; }
+  .legal-inner h3 { font-family:var(--sans); font-weight:700; font-size:1.05rem; color:var(--ink); margin:28px 0 8px; }
+  .legal-inner p, .legal-inner li { font-size:1rem; color:var(--ink-mut); line-height:1.65; }
+  .legal-inner ul { padding-left:1.2em; margin:6px 0; }
+  .legal-inner a { color:var(--jade); }
+
+  .wa-float { position:fixed; right:22px; bottom:22px; z-index:300; width:56px; height:56px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 8px 22px rgba(0,0,0,.22); transition:transform .25s cubic-bezier(.2,.9,.3,1); }
+  .wa-float:hover { transform:scale(1.08); }
+  .wa-float svg { width:28px; height:28px; fill:#fff; }
+  .contacto.open ~ .wa-float, .legal-overlay.open ~ .wa-float { opacity:0; visibility:hidden; pointer-events:none; }
+
+  @media (max-width:720px){
+    .wrap{ padding:0 1.3rem; }
+    .exp-number{ display:none; }
+    .ficha-grid{ grid-template-columns:1fr; }
+    .articulo{ grid-template-columns:56px 1fr; gap:16px; }
+    .marks{ inset:16px; }
+    .header-inner{ gap:8px; }
+    .wa-float{ right:16px; bottom:16px; width:52px; height:52px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hero-canvas,.cur-dot,.cur-ring{ display:none; }
+    .cierre .aurora{ animation:none; }
+    *{ transition:none !important; }
+    .hero h1 .line>span,.hero .lead,.hero .cta,.will-reveal,.ficha,.articulo,.declara{ opacity:1 !important; transform:none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="cur-ring" id="curRing"></div>
+<div class="cur-dot" id="curDot"></div>
+
+<header id="header">
+  <div class="wrap header-inner">
+    <a href="#" class="logo" data-hot>Ni<span class="ai">.AI</span> <span class="partners">Partners</span></a>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button data-setlang="es" class="active">ES</button>
+        <button data-setlang="en">EN</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" data-hot data-es="MODO" data-en="THEME">MODO</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="marks"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+  <div class="wrap">
+    <div class="exp-number">EXP. Nº <span class="k"><span class="k-ia">IA</span>·CYBER</span> / 2026<br><span data-es="ABIERTO — COSTA DEL SOL" data-en="OPEN — COSTA DEL SOL">ABIERTO — COSTA DEL SOL</span></div>
+    <div class="hero-inner">
+      <div class="stamp"><span class="dot"></span> <span class="decode" data-es="Diagnóstico Inicial · " data-en="Initial Diagnosis · ">Diagnóstico Inicial · </span><span class="decode acc-ia" data-es="IA" data-en="AI">IA</span><span class="decode" data-es=" &amp; " data-en=" &amp; "> &amp; </span><span class="decode acc-cy" data-es="Cyber" data-en="Cyber">Cyber</span></div>
+      <p class="hero-sub"><span class="decode" data-es="Especializados en asesorías, gestorías y despachos" data-en="Specialists in advisory firms and professional practices">Especializados en asesorías, gestorías y despachos</span></p>
+      <h1>
+        <span class="line"><span data-es="Antes de la inteligencia artificial," data-en="Before artificial intelligence,">Antes de la inteligencia artificial,</span></span>
+        <span class="line"><span data-es="<em>ponemos orden</em> en tu despacho." data-en="we <em>bring order</em> to your firm."><em>ponemos orden</em> en tu despacho.</span></span>
+      </h1>
+      <p class="lead" data-es="Organizamos tus procesos, vemos dónde la IA realmente aporta valor y protegemos los datos de tus clientes. Si no tiene sentido aplicarla, te lo decimos." data-en="We organize your processes, see where AI really adds value and protect your clients' data. If it doesn't make sense to apply it, we tell you.">Organizamos tus procesos, vemos dónde la IA realmente aporta valor y protegemos los datos de tus clientes. Si no tiene sentido aplicarla, te lo decimos.</p>
+      <a href="#contacto" class="cta" data-hot><span data-es="Contáctanos" data-en="Contact us">Contáctanos</span> <span class="seal">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block problema">
+  <div class="wrap">
+    <div class="section-margin"><span class="num">§ 01</span><span class="rule"></span><span class="label" data-es="Hallazgos" data-en="Findings">Hallazgos</span></div>
+    <h2 data-es="Más trabajo que nunca. Y <em>menos tiempo</em> que nunca." data-en="More work than ever. And <em>less time</em> than ever.">Más trabajo que nunca. Y <em>menos tiempo</em> que nunca.</h2>
+    <div class="ficha-grid" id="fichaGrid">
+      <div class="ficha tilt"><span class="tab">A</span><h3 data-es="La administración va colapsada" data-en="The system is overwhelmed">La administración va colapsada</h3><p data-es="Cada gestión depende de Hacienda, la Seguridad Social o el Registro Mercantil, con sus propios plazos y criterios que tú no controlas. Mientras tanto, el cliente te pregunta a ti cómo va, y contestar esa pregunta una y otra vez a mano te quita horas que deberías dedicar a asesorar de verdad." data-en="Every process depends on the Tax Agency, Social Security or the Companies Registry, each with its own deadlines and criteria you don't control. Meanwhile, the client asks you how it's going, and answering that question over and over by hand costs you hours you should be spending on real advice.">Cada gestión depende de Hacienda, la Seguridad Social o el Registro Mercantil, con sus propios plazos y criterios que tú no controlas. Mientras tanto, el cliente te pregunta a ti cómo va, y contestar esa pregunta una y otra vez a mano te quita horas que deberías dedicar a asesorar de verdad.</p></div>
+      <div class="ficha tilt"><span class="tab">B</span><h3 data-es="Las reglas han cambiado" data-en="The rules have changed">Las reglas han cambiado</h3><p data-es="VeriFactu y la factura electrónica ya son obligatorias también para tu propio despacho. Adaptar tus sistemas a tiempo, y no después de que Hacienda te lo señale, no es opcional. Nosotros te ayudamos a detectarlo antes de que se convierta en un problema." data-en="VeriFactu and e-invoicing are now mandatory for your own firm too. Adapting your systems in time, not after the Tax Agency flags it, isn't optional. We help you catch it before it becomes a problem.">VeriFactu y la factura electrónica ya son obligatorias también para tu propio despacho. Adaptar tus sistemas a tiempo, y no después de que Hacienda te lo señale, no es opcional. Nosotros te ayudamos a detectarlo antes de que se convierta en un problema.</p></div>
+      <div class="ficha tilt gold"><span class="tab">C</span><h3 data-es="Datos sensibles, riesgo real" data-en="Sensitive data, real risk">Datos sensibles, riesgo real</h3><p data-es="Manejas documentación de lo más delicada. Y la mayoría de sanciones no llegan por ataques sofisticados, sino por fallos de seguridad básicos del día a día. Revisamos justo esos fallos antes de que se conviertan en una filtración." data-en="You handle the most delicate documentation. And most penalties don't come from sophisticated attacks, but from basic everyday security mistakes. We check exactly those gaps before they turn into a leak.">Manejas documentación de lo más delicada. Y la mayoría de sanciones no llegan por ataques sofisticados, sino por fallos de seguridad básicos del día a día. Revisamos justo esos fallos antes de que se conviertan en una filtración.</p></div>
+      <div class="ficha tilt"><span class="tab">D</span><h3 data-es="El sector va por detrás" data-en="The sector lags behind">El sector va por detrás</h3><p data-es="El 75% de las pymes españolas ya tiene digitalización básica, pero solo 3 de cada 10 usan software pensado para su sector. Entre hojas de cálculo, carpetas y tareas repetitivas, el tiempo para asesorar de verdad se evapora. Ahí es donde entra nuestra auditoría, encontrar qué automatizar primero." data-en="75% of Spanish SMEs already have basic digitalization, but only 3 in 10 use software built for their sector. Between spreadsheets, folders and repetitive tasks, the time to really advise evaporates. That's where our audit comes in, finding what to automate first.">El 75% de las pymes españolas ya tiene digitalización básica, pero solo 3 de cada 10 usan software pensado para su sector. Entre hojas de cálculo, carpetas y tareas repetitivas, el tiempo para asesorar de verdad se evapora. Ahí es donde entra nuestra auditoría, encontrar qué automatizar primero.</p></div>
+    </div>
+    <div class="problema-cierre">
+      <p data-es="No te falta esfuerzo. Te falta un <em>sistema</em>." data-en="It's not effort you're missing. It's a <em>system</em>.">No te falta esfuerzo. Te falta un <em>sistema</em>.</p>
+      <a href="#contacto" class="cta" data-hot><span data-es="Pongamos orden" data-en="Let's bring order">Pongamos orden</span> <span class="seal">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block confianza">
+  <div class="wrap">
+    <div class="section-margin"><span class="num">§ 02</span><span class="rule"></span><span class="label" data-es="De persona a persona" data-en="Person to person">De persona a persona</span></div>
+    <h2 data-es="Detrás de todo esto hay <em>personas</em>, no una empresa que no contesta." data-en="Behind all this there are <em>people</em>, not a company that never answers.">Detrás de todo esto hay <em>personas</em>, no una empresa que no contesta.</h2>
+    <div class="declaraciones">
+      <p class="declara" data-es="Sabemos cómo funciona un despacho. Las horas que no se ven. La sensación de ir siempre corriendo y de que nunca es suficiente." data-en="We know how a firm works. The hours nobody sees. The feeling of always running and that it's never enough.">Sabemos cómo funciona un despacho. Las horas que no se ven. La sensación de ir siempre corriendo y de que nunca es suficiente.</p>
+      <p class="declara" data-es="Por eso no venimos a colocarte nada. Venimos a sentarnos contigo, escucharte y entender de verdad cómo trabajas." data-en="That's why we're not here to push anything on you. We come to sit down with you, listen, and truly understand how you work.">Por eso no venimos a colocarte nada. Venimos a sentarnos contigo, escucharte y entender de verdad cómo trabajas.</p>
+      <p class="declara" data-es="Vamos a tu ritmo. Te hablamos claro, como le hablarías a alguien de confianza. Y si algo no te hace falta, te lo decimos, aunque no nos convenga." data-en="We go at your pace. We speak plainly, the way you'd speak to someone you trust. And if there's something you don't need, we tell you, even if it doesn't suit us.">Vamos a tu ritmo. Te hablamos claro, como le hablarías a alguien de confianza. Y si algo no te hace falta, te lo decimos, aunque no nos convenga.</p>
+      <p class="declara" data-es="Si crecemos, es contigo. Y eso solo pasa de una forma: <strong>cuidándote desde el primer día.</strong>" data-en="If we grow, it's with you. And that only happens one way: <strong>by taking care of you from day one.</strong>">Si crecemos, es contigo. Y eso solo pasa de una forma: <strong>cuidándote desde el primer día.</strong></p>
+    </div>
+    <p class="destacado will-reveal" data-es="¿Hablamos? Sin compromiso, sin guion. Tú cuentas, nosotros escuchamos." data-en="Shall we talk? No commitment, no script. You talk, we listen.">¿Hablamos? Sin compromiso, sin guion. Tú cuentas, nosotros escuchamos.</p>
+    <a href="#contacto" class="cta" data-hot><span data-es="Hablemos" data-en="Let's talk">Hablemos</span> <span class="seal">→</span></a>
+  </div>
+</section>
+
+<section class="block metodo">
+  <div class="wrap">
+    <div class="section-margin"><span class="num">§ 03</span><span class="rule"></span><span class="label" data-es="Método" data-en="Method">Método</span></div>
+    <h2 data-es="Diagnóstico primero. <em>Implementación</em> después." data-en="Diagnosis first. <em>Implementation</em> after.">Diagnóstico primero. <em>Implementación</em> después.</h2>
+    <div class="metodo-body">
+      <div class="spine"><div class="spine-fill" id="spineFill"></div></div>
+      <div class="articulo"><div class="art-label">Art. 1</div><div><h3 data-es="Auditoría y mapa de procesos reales" data-en="Audit and map of real processes">Auditoría y mapa de procesos reales</h3><p data-es="Analizamos las 4 áreas: Marketing, Ventas, Delivery (tramitaciones), Administración. Hasta que un proceso no se dibuja, no se puede mejorar." data-en="We analyze the 4 areas: Marketing, Sales, Delivery (case processing), Administration. Until a process is drawn, it can't be improved.">Analizamos las 4 áreas: Marketing, Ventas, Delivery (tramitaciones), Administración. Hasta que un proceso no se dibuja, no se puede mejorar.</p></div></div>
+      <div class="articulo"><div class="art-label">Art. 2</div><div><h3 data-es="Detección de mejoras y oportunidades de IA" data-en="Detecting improvements and AI opportunities">Detección de mejoras y oportunidades de IA</h3><p data-es="Primero optimizamos el proceso. Después decidimos si tiene sentido automatizarlo. Nunca al revés. Solo proponemos tecnología donde aporta valor real." data-en="First we optimize the process. Then we decide whether it makes sense to automate it. Never the other way around. We only propose technology where it adds real value.">Primero optimizamos el proceso. Después decidimos si tiene sentido automatizarlo. Nunca al revés. Solo proponemos tecnología donde aporta valor real.</p></div></div>
+      <div class="articulo cyber"><div class="art-label">Art. 3</div><div><h3 data-es="Revisión de ciberseguridad" data-en="Cybersecurity review">Revisión de ciberseguridad</h3><p data-es="Cada mejora pasa por un filtro: accesos, datos, dependencias y control. La seguridad no es un añadido, es una condición de partida." data-en="Every improvement goes through a filter: access, data, dependencies and control. Security isn't an add-on, it's a starting condition.">Cada mejora pasa por un filtro: accesos, datos, dependencias y control. La seguridad no es un añadido, es una condición de partida.</p></div></div>
+      <div class="articulo"><div class="art-label">Art. 4</div><div><h3 data-es="Roadmap de implementación a medida" data-en="Tailored implementation roadmap">Roadmap de implementación a medida</h3><p data-es="Qué hacer, en qué orden y por qué ese orden. Priorizado por impacto y riesgo." data-en="What to do, in what order and why that order. Prioritized by impact and risk.">Qué hacer, en qué orden y por qué ese orden. Priorizado por impacto y riesgo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block entregables">
+  <div class="wrap">
+    <div class="section-margin"><span class="num">§ 04</span><span class="rule"></span><span class="label" data-es="Entregables" data-en="Deliverables">Entregables</span></div>
+    <h2 data-es="No te prometemos magia. Te damos un <em>Quick Win</em> real." data-en="We don't promise magic. We give you a real <em>Quick Win</em>.">No te prometemos magia. Te damos un <em>Quick Win</em> real.</h2>
+    <div>
+      <div class="articulo"><div class="art-label">Paso 1</div><div><h3 data-es="Una llamada de 20-30 minutos" data-en="A 20-30 minute call">Una llamada de 20-30 minutos</h3><p data-es="Escuchamos cómo trabaja tu despacho hoy, qué tareas se repiten, dónde se pierde tiempo y qué te preocupa de verdad." data-en="We listen to how your firm works today, what tasks repeat, where time gets lost and what really worries you.">Escuchamos cómo trabaja tu despacho hoy, qué tareas se repiten, dónde se pierde tiempo y qué te preocupa de verdad.</p></div></div>
+      <div class="articulo"><div class="art-label">Paso 2</div><div><h3 data-es="Tu Quick Win, al día siguiente" data-en="Your Quick Win, the next day">Tu Quick Win, al día siguiente</h3><p data-es="Te enviamos la mejora concreta con más impacto que puedes aplicar ya, sin compromiso. No es el diagnóstico completo, es el primer paso real." data-en="We send you the concrete improvement with the most impact you can apply right away, no strings attached. It's not the full diagnosis, it's the real first step.">Te enviamos la mejora concreta con más impacto que puedes aplicar ya, sin compromiso. No es el diagnóstico completo, es el primer paso real.</p></div></div>
+    </div>
+    <div class="problema-cierre">
+      <p data-es="Sin informes eternos. Sin letra pequeña." data-en="No endless reports. No fine print.">Sin informes eternos. Sin letra pequeña.</p>
+      <a href="#contacto" class="cta" data-hot><span data-es="Quiero mi Quick Win" data-en="I want my Quick Win">Quiero mi Quick Win</span> <span class="seal">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block cierre">
+  <div class="aurora"></div>
+  <div class="marks" style="--corner:#C9A86A;"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+  <div class="wrap cierre-inner">
+    <div class="stamp"><span class="dot"></span> <span class="decode" data-es="Análisis Inicial Gratuito" data-en="Free Initial Analysis">Análisis Inicial Gratuito</span></div>
+    <h2 data-es="Tu despacho no se va a <em>ordenar solo</em>." data-en="Your firm won't <em>sort itself out</em>.">Tu despacho no se va a <em>ordenar solo</em>.</h2>
+    <p class="desc" data-es="Antes de la IA, hay que poner orden. El primer paso no cuesta nada: una conversación para ver por dónde empezar. Sin compromiso y sin tecnicismos." data-en="Before AI, things need order. The first step costs nothing: a conversation to see where to start. No commitment, no jargon.">Antes de la IA, hay que poner orden. El primer paso no cuesta nada: una conversación para ver por dónde empezar. Sin compromiso y sin tecnicismos.</p>
+    <a href="#contacto" class="cta" data-hot><span data-es="Contáctanos" data-en="Get in touch">Contáctanos</span> <span class="seal">→</span></a>
+  </div>
+</section>
+
+<section class="contacto" id="contacto" aria-hidden="true">
+  <div class="overlay-bar">
+    <div class="overlay-bar-inner">
+      <a href="#" class="logo" data-hot>Ni<span class="ai">.AI</span> <span class="partners">Partners</span></a>
+      <div class="overlay-actions">
+        <div class="lang-toggle">
+          <button data-setlang="es" class="active">ES</button>
+          <button data-setlang="en">EN</button>
+        </div>
+        <button class="overlay-close" aria-label="Cerrar" data-close-contacto data-hot>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="contacto-inner">
+    <div class="stamp"><span class="dot"></span> <span data-es="Análisis Inicial Gratuito" data-en="Free Initial Analysis">Análisis Inicial Gratuito</span></div>
+    <h2 data-es="Hablemos. <em>Sin compromiso.</em>" data-en="Let's talk. <em>No strings attached.</em>">Hablemos. <em>Sin compromiso.</em></h2>
+    <p class="sub" data-es="Cuéntanos qué te quita el sueño y te decimos, sin coste, dónde puedes ganar tiempo y proteger tu despacho." data-en="Tell us what keeps you up at night and we'll show you, at no cost, where you can save time and protect your firm.">Cuéntanos qué te quita el sueño y te decimos, sin coste, dónde puedes ganar tiempo y proteger tu despacho.</p>
+
+    <form id="contactForm">
+      <div class="form-field">
+        <label data-es="Nombre completo" data-en="Full name">Nombre completo</label>
+        <input type="text" name="nombre" required data-ph-es="Tu nombre y apellidos" data-ph-en="Your full name" placeholder="Tu nombre y apellidos">
+      </div>
+      <div class="form-field">
+        <label data-es="Email o teléfono" data-en="Email or phone">Email o teléfono</label>
+        <input type="text" name="contacto" required data-ph-es="Cómo prefieres que te contactemos" data-ph-en="How you'd prefer to be contacted" placeholder="Cómo prefieres que te contactemos">
+      </div>
+      <div class="form-field">
+        <label data-es="Nombre de la empresa o despacho" data-en="Company or firm name">Nombre de la empresa o despacho</label>
+        <input type="text" name="empresa" required data-ph-es="Nombre de tu empresa o despacho" data-ph-en="Your company or firm name" placeholder="Nombre de tu empresa o despacho">
+      </div>
+      <div class="form-field">
+        <label data-es="¿Cuál es el problema que ahora te quita el sueño?" data-en="What's the problem keeping you up at night?">¿Cuál es el problema que ahora te quita el sueño?</label>
+        <textarea name="problema" required data-ph-es="Cuéntanos con tus palabras qué es lo que más te frena ahora mismo." data-ph-en="Tell us in your own words what's holding you back right now." placeholder="Cuéntanos con tus palabras qué es lo que más te frena ahora mismo."></textarea>
+      </div>
+      <button type="submit" class="cta" data-hot><span data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</span> <span class="seal">→</span></button>
+      <p class="form-note" data-es="<span class='shield'>&#128274;</span> Tus datos están protegidos. No los compartimos con nadie. Te respondemos en menos de 24h." data-en="<span class='shield'>&#128274;</span> Your data is protected. We never share it. We reply within 24h."><span class="shield">&#128274;</span> Tus datos están protegidos. No los compartimos con nadie. Te respondemos en menos de 24h.</p>
+      <p class="form-status" id="formStatus" role="status"></p>
+    </form>
+
+    <div class="contacto-datos">
+      <div class="dato dato-whatsapp">
+        <span class="dato-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm0 18.14h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.53 3.69-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.17 8.17 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23zm4.51-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.01 2.58.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg></span>
+        <div><div class="dato-label" data-es="WhatsApp" data-en="WhatsApp">WhatsApp</div><a href="https://wa.me/34638222863" target="_blank" rel="noopener" class="dato-valor" data-hot>638 222 863</a></div>
+      </div>
+      <div class="dato">
+        <span class="dato-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><div class="dato-label" data-es="Teléfono" data-en="Phone">Teléfono</div><a href="tel:+34638222863" class="dato-valor" data-hot>638 222 863</a></div>
+      </div>
+      <div class="dato">
+        <span class="dato-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+        <div><div class="dato-label" data-es="Email" data-en="Email">Email</div><a href="mailto:Ni.AI.Partners@gmail.com" class="dato-valor" data-hot>Ni.AI.Partners@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Ni.AI Partners · 638 222 863 · Ni.AI.Partners@gmail.com<br><span data-es="También trabajamos con pymes de cualquier sector." data-en="We also work with SMEs of any kind.">También trabajamos con pymes de cualquier sector.</span>
+  <div class="footer-legal">
+    <a href="#legal-aviso" data-hot data-es="Aviso legal" data-en="Legal notice">Aviso legal</a>·<a href="#legal-privacidad" data-hot data-es="Privacidad" data-en="Privacy">Privacidad</a>·<a href="#legal-cookies" data-hot data-es="Cookies" data-en="Cookies">Cookies</a>
+  </div>
+</footer>
+
+<section class="legal-overlay" id="legal-aviso" aria-hidden="true">
+  <div class="overlay-bar">
+    <div class="overlay-bar-inner">
+      <a href="#" class="logo" data-hot>Ni<span class="ai">.AI</span> <span class="partners">Partners</span></a>
+      <button class="overlay-close" aria-label="Cerrar" data-close-legal data-hot>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="legal-inner">
+    <h2 data-es="Aviso legal" data-en="Legal notice">Aviso legal</h2>
+    <p data-es="En cumplimiento del deber de información recogido en la legislación vigente, se facilitan los siguientes datos:" data-en="In compliance with applicable disclosure obligations, the following information is provided:">En cumplimiento del deber de información recogido en la legislación vigente, se facilitan los siguientes datos:</p>
+    <ul>
+      <li data-es="<strong>Titular:</strong> Rubén Zappala López" data-en="<strong>Owner:</strong> Rubén Zappala López"><strong>Titular:</strong> Rubén Zappala López</li>
+      <li data-es="<strong>Actividad:</strong> Ni.AI Partners — servicios de consultoría y automatización con inteligencia artificial para asesorías, gestorías y despachos profesionales." data-en="<strong>Activity:</strong> Ni.AI Partners — AI consulting and automation services for advisory firms, gestorías and professional practices."><strong>Actividad:</strong> Ni.AI Partners — servicios de consultoría y automatización con inteligencia artificial para asesorías, gestorías y despachos profesionales.</li>
+      <li data-es="<strong>Ubicación:</strong> Marbella (Málaga), España" data-en="<strong>Location:</strong> Marbella (Málaga), Spain"><strong>Ubicación:</strong> Marbella (Málaga), España</li>
+      <li data-es="<strong>Contacto:</strong> Ni.AI.Partners@gmail.com · 638 222 863" data-en="<strong>Contact:</strong> Ni.AI.Partners@gmail.com · 638 222 863"><strong>Contacto:</strong> Ni.AI.Partners@gmail.com · 638 222 863</li>
+      <li data-es="<strong>Situación:</strong> actividad en fase de constitución. El titular actúa actualmente como persona física, sin estar dado de alta como autónomo ni constituido como sociedad. Esta información se actualizará en cuanto se formalice el alta correspondiente." data-en="<strong>Status:</strong> activity currently in start-up phase. The owner currently acts as a private individual, not yet registered as self-employed or incorporated. This information will be updated once formally registered."><strong>Situación:</strong> actividad en fase de constitución. El titular actúa actualmente como persona física, sin estar dado de alta como autónomo ni constituido como sociedad. Esta información se actualizará en cuanto se formalice el alta correspondiente.</li>
+    </ul>
+    <p data-es="El acceso y uso de este sitio web atribuye la condición de usuario y supone la aceptación de las condiciones aquí descritas. El titular se reserva el derecho a modificar el contenido de la web sin previo aviso." data-en="Accessing and using this website grants the condition of user and implies acceptance of the conditions described here. The owner reserves the right to modify the website's content without prior notice.">El acceso y uso de este sitio web atribuye la condición de usuario y supone la aceptación de las condiciones aquí descritas. El titular se reserva el derecho a modificar el contenido de la web sin previo aviso.</p>
+  </div>
+</section>
+
+<section class="legal-overlay" id="legal-privacidad" aria-hidden="true">
+  <div class="overlay-bar">
+    <div class="overlay-bar-inner">
+      <a href="#" class="logo" data-hot>Ni<span class="ai">.AI</span> <span class="partners">Partners</span></a>
+      <button class="overlay-close" aria-label="Cerrar" data-close-legal data-hot>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="legal-inner">
+    <h2 data-es="Política de privacidad" data-en="Privacy policy">Política de privacidad</h2>
+    <p data-es="<strong>Responsable:</strong> Rubén Zappala López (ver Aviso Legal)." data-en="<strong>Data controller:</strong> Rubén Zappala López (see Legal Notice)."><strong>Responsable:</strong> Rubén Zappala López (ver Aviso Legal).</p>
+    <h3 data-es="Datos que recogemos" data-en="Data we collect">Datos que recogemos</h3>
+    <p data-es="A través del formulario de contacto de esta web recogemos el nombre, un dato de contacto (email o teléfono), el nombre de tu empresa o despacho, y el mensaje que escribes libremente." data-en="Through this website's contact form we collect your name, a contact detail (email or phone), your company or firm name, and the message you write freely.">A través del formulario de contacto de esta web recogemos el nombre, un dato de contacto (email o teléfono), el nombre de tu empresa o despacho, y el mensaje que escribes libremente.</p>
+    <h3 data-es="Finalidad" data-en="Purpose">Finalidad</h3>
+    <p data-es="Usamos estos datos únicamente para responder a tu consulta y, si nos autorizas, ofrecerte información sobre nuestros servicios." data-en="We use this data only to respond to your query and, if you authorize it, to provide you information about our services.">Usamos estos datos únicamente para responder a tu consulta y, si nos autorizas, ofrecerte información sobre nuestros servicios.</p>
+    <h3 data-es="Dónde se guardan" data-en="Where it is stored">Dónde se guardan</h3>
+    <p data-es="Los datos se almacenan en Airtable, una plataforma de gestión de datos con sede en Estados Unidos. Al tratarse de una actividad en fase inicial y de pequeño volumen, usamos el plan estándar de Airtable; si el volumen de datos crece de forma significativa, evaluaremos herramientas con garantías adicionales de protección de datos (como un contrato de protección de datos empresarial)." data-en="Data is stored in Airtable, a data management platform based in the United States. As this activity is at an early stage and small scale, we use Airtable's standard plan; if data volume grows significantly, we will evaluate tools with additional data protection guarantees (such as an enterprise data processing agreement).">Los datos se almacenan en Airtable, una plataforma de gestión de datos con sede en Estados Unidos. Al tratarse de una actividad en fase inicial y de pequeño volumen, usamos el plan estándar de Airtable; si el volumen de datos crece de forma significativa, evaluaremos herramientas con garantías adicionales de protección de datos (como un contrato de protección de datos empresarial).</p>
+    <h3 data-es="Conservación" data-en="Retention">Conservación</h3>
+    <p data-es="Conservamos tus datos mientras exista una relación o interés comercial activo, y los eliminamos si nos lo solicitas o tras un periodo prolongado de inactividad." data-en="We keep your data while there is an active commercial relationship or interest, and delete it if you request it or after a prolonged period of inactivity.">Conservamos tus datos mientras exista una relación o interés comercial activo, y los eliminamos si nos lo solicitas o tras un periodo prolongado de inactividad.</p>
+    <h3 data-es="Tus derechos" data-en="Your rights">Tus derechos</h3>
+    <p data-es="Puedes solicitar en cualquier momento el acceso, rectificación o eliminación de tus datos escribiendo a Ni.AI.Partners@gmail.com." data-en="You can request access, rectification or deletion of your data at any time by writing to Ni.AI.Partners@gmail.com.">Puedes solicitar en cualquier momento el acceso, rectificación o eliminación de tus datos escribiendo a Ni.AI.Partners@gmail.com.</p>
+    <h3 data-es="No cesión a terceros" data-en="No sharing with third parties">No cesión a terceros</h3>
+    <p data-es="Tus datos no se venden ni se comparten con terceros, salvo obligación legal." data-en="Your data is not sold or shared with third parties, except where legally required.">Tus datos no se venden ni se comparten con terceros, salvo obligación legal.</p>
+  </div>
+</section>
+
+<section class="legal-overlay" id="legal-cookies" aria-hidden="true">
+  <div class="overlay-bar">
+    <div class="overlay-bar-inner">
+      <a href="#" class="logo" data-hot>Ni<span class="ai">.AI</span> <span class="partners">Partners</span></a>
+      <button class="overlay-close" aria-label="Cerrar" data-close-legal data-hot>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="legal-inner">
+    <h2 data-es="Política de cookies" data-en="Cookie policy">Política de cookies</h2>
+    <p data-es="Esta web utiliza PostHog en modo «cookieless» para medir visitas y entender cómo se usa la página (por ejemplo, qué secciones se leen o si se hace clic en WhatsApp), sin instalar cookies de seguimiento ni identificar personalmente a quien navega." data-en="This website uses PostHog in “cookieless” mode to measure visits and understand how the page is used (for example, which sections are read or whether the WhatsApp link is clicked), without installing tracking cookies or personally identifying visitors.">Esta web utiliza PostHog en modo «cookieless» para medir visitas y entender cómo se usa la página (por ejemplo, qué secciones se leen o si se hace clic en WhatsApp), sin instalar cookies de seguimiento ni identificar personalmente a quien navega.</p>
+    <p data-es="Al no usar cookies de rastreo, no es necesario un banner de consentimiento para esta funcionalidad básica. Si en el futuro se incorpora alguna herramienta adicional que sí use cookies, esta política se actualizará y, si corresponde, se añadirá el aviso correspondiente." data-en="As no tracking cookies are used, a consent banner is not required for this basic functionality. If any additional tool that does use cookies is introduced in the future, this policy will be updated and, if applicable, the corresponding notice will be added.">Al no usar cookies de rastreo, no es necesario un banner de consentimiento para esta funcionalidad básica. Si en el futuro se incorpora alguna herramienta adicional que sí use cookies, esta política se actualizará y, si corresponde, se añadirá el aviso correspondiente.</p>
+  </div>
+</section>
+
+<a href="https://wa.me/34638222863?text=Hola%2C%20he%20visto%20vuestra%20web%20y%20quiero%20hablar%20sobre%20mi%20despacho" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp" data-hot>
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm0 18.14h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.53 3.69-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.17 8.17 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23zm4.51-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.01 2.58.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+</a>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+
+  // formulario de contacto → webhook n8n → Airtable (token a salvo en el servidor)
+  (function () {
+    const WEBHOOK_URL = 'https://n8n.n8nniaipartners.tech/webhook/landing-contacto';
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    if (!form) return;
+    const msg = {
+      es: { ok: 'Recibido. Te contestamos en menos de 24h.', err: 'No se pudo enviar. Escríbenos por WhatsApp o email, por favor.' },
+      en: { ok: "Got it. We'll reply within 24h.", err: 'Something went wrong. Please reach us via WhatsApp or email instead.' }
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: form.nombre.value,
+            contacto: form.contacto.value,
+            empresa: form.empresa.value,
+            problema: form.problema.value
+          })
+        });
+        if (!res.ok) throw new Error('webhook error');
+        if (window.posthog) posthog.capture('form_submitted');
+        status.textContent = msg[lang].ok;
+        status.className = 'form-status show ok';
+        form.reset();
+      } catch (err) {
+        status.textContent = msg[lang].err;
+        status.className = 'form-status show err';
+        btn.disabled = false;
+      }
+    });
+  })();
+
+  // evento: clic en WhatsApp (para el embudo de PostHog)
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => a.addEventListener('click', () => {
+    if (window.posthog) posthog.capture('whatsapp_click');
+  }));
+
+  // idioma ES / EN
+  (function () {
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-es][data-en]').forEach(el => { el.innerHTML = el.getAttribute('data-' + lang); });
+      document.querySelectorAll('[data-ph-es][data-ph-en]').forEach(el => { el.placeholder = el.getAttribute('data-ph-' + lang); });
+      document.querySelectorAll('.decode').forEach(el => { if (el._iv) { clearInterval(el._iv); el._iv = null; } delete el.dataset.final; });
+      document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.toggle('active', b.dataset.setlang === lang));
+    }
+    document.querySelectorAll('.lang-toggle button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.setlang)));
+  })();
+
+  // arranque de animaciones del hero (se repite al volver arriba)
+  const heroLines = document.querySelectorAll('.hero h1 .line > span');
+  function heroIn(on){
+    heroLines.forEach((s, i) => {
+      s.style.transition = 'transform .8s cubic-bezier(.2,.8,.2,1) ' + (0.15 + i*0.12) + 's, opacity .8s ease ' + (0.15 + i*0.12) + 's';
+      s.style.transform = on ? 'translateY(0)' : 'translateY(110%)';
+      s.style.opacity = on ? '1' : '0';
+    });
+    document.body.classList.toggle('ready', on);
+  }
+  requestAnimationFrame(() => heroIn(true));
+  const heroObs = new IntersectionObserver((es) => es.forEach(e => heroIn(e.isIntersecting)), { threshold: 0.2 });
+  heroObs.observe(document.querySelector('.hero'));
+
+  // progreso de scroll
+  const prog = document.getElementById('progress');
+  const onScrollProg = () => { const h = document.documentElement; prog.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100) + '%'; };
+  window.addEventListener('scroll', onScrollProg, { passive: true }); onScrollProg();
+
+  // header
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+  // tema
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const isDark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  });
+
+  // overlay de contacto (abrir con cualquier botón que apunte a #contacto)
+  (function () {
+    const overlay = document.getElementById('contacto');
+    const open = () => { overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('no-scroll'); };
+    const close = () => { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true'); document.body.classList.remove('no-scroll'); };
+    document.querySelectorAll('a[href="#contacto"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(); }));
+    document.querySelectorAll('[data-close-contacto]').forEach(el => el.addEventListener('click', close));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+  })();
+
+  // overlays legales (aviso / privacidad / cookies)
+  (function () {
+    const ids = ['legal-aviso', 'legal-privacidad', 'legal-cookies'];
+    const overlays = ids.map(id => document.getElementById(id)).filter(Boolean);
+    let current = null;
+    const open = (overlay) => { overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('no-scroll'); current = overlay; };
+    const close = () => { if (!current) return; current.classList.remove('open'); current.setAttribute('aria-hidden', 'true'); document.body.classList.remove('no-scroll'); current = null; };
+    ids.forEach(id => {
+      document.querySelectorAll(`a[href="#${id}"]`).forEach(a => a.addEventListener('click', e => {
+        e.preventDefault();
+        const overlay = document.getElementById(id);
+        if (overlay) open(overlay);
+      }));
+    });
+    document.querySelectorAll('[data-close-legal]').forEach(el => el.addEventListener('click', close));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && current) close(); });
+  })();
+
+  // cursor personalizado
+  if (!coarse && !reduce) {
+    const dot = document.getElementById('curDot'), ring = document.getElementById('curRing');
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px)`; });
+    (function loop(){ rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.transform = `translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
+    document.querySelectorAll('[data-hot], a, button, input, textarea').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hot'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hot'));
+    });
+  }
+
+  // efecto "descifrar"
+  if (!reduce) {
+    const glyphs = '█▓▒░#%&$@01<>/\\{}';
+    function decode(el) {
+      const final = el.dataset.final || el.textContent; el.dataset.final = final;
+      if (el._iv) clearInterval(el._iv);
+      let frame = 0; const total = final.length;
+      el._iv = setInterval(() => {
+        el.textContent = final.split('').map((ch, i) => {
+          if (ch === ' ') return ' ';
+          if (i < frame) return final[i];
+          return glyphs[Math.floor(Math.random()*glyphs.length)];
+        }).join('');
+        frame += 0.6;
+        if (frame >= total) { el.textContent = final; clearInterval(el._iv); el._iv = null; }
+      }, 34);
+    }
+    const dio = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) decode(e.target); }), { threshold: 0.6 });
+    document.querySelectorAll('.decode').forEach(el => dio.observe(el));
+  }
+
+  // canvas: red de partículas
+  (function () {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas || reduce) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr, nodes = []; const mouse = { x:-9999, y:-9999 };
+    function col(){ const t = document.documentElement.getAttribute('data-theme'); const d = t ? t==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; return d ? [63,203,156] : [20,110,79]; }
+    function resize(){
+      dpr = Math.min(devicePixelRatio||1, 2); w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w*dpr; canvas.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+      const n = Math.min(Math.floor(w*h/14000), 110);
+      nodes = Array.from({length:n}, () => ({ x:Math.random()*w, y:Math.random()*h, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3 }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h); const c = col(), L = 140;
+      for (const n of nodes){
+        n.x+=n.vx; n.y+=n.vy;
+        if(n.x<0||n.x>w)n.vx*=-1; if(n.y<0||n.y>h)n.vy*=-1;
+        const dx=n.x-mouse.x, dy=n.y-mouse.y, d=Math.hypot(dx,dy);
+        if(d<160){ n.x+=dx/d*0.8; n.y+=dy/d*0.8; }
+        ctx.beginPath(); ctx.arc(n.x,n.y,1.7,0,7); ctx.fillStyle=`rgba(${c[0]},${c[1]},${c[2]},.6)`; ctx.fill();
+      }
+      for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j], d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<L){ ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.strokeStyle=`rgba(${c[0]},${c[1]},${c[2]},${.18*(1-d/L)})`; ctx.lineWidth=1; ctx.stroke(); }
+      }
+      requestAnimationFrame(draw);
+    }
+    window.addEventListener('mousemove', e => { const r=canvas.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; }, { passive:true });
+    window.addEventListener('mouseout', () => { mouse.x=-9999; mouse.y=-9999; });
+    window.addEventListener('resize', resize, { passive:true });
+    resize(); draw();
+  })();
+
+  // tarjetas 3D
+  if (!coarse && !reduce) {
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX-r.left)/r.width - .5, py = (e.clientY-r.top)/r.height - .5;
+        card.style.transform = `translateY(-4px) rotateX(${-py*6}deg) rotateY(${px*8}deg)`;
+        card.style.boxShadow = '0 24px 50px rgba(27,33,31,.14)';
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; card.style.boxShadow = ''; });
+    });
+  }
+
+  // botones magnéticos
+  if (!coarse && !reduce) {
+    document.querySelectorAll('.cta').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.16}px, ${(e.clientY-r.top-r.height/2)*.28}px)`;
+      });
+      btn.addEventListener('mouseleave', () => btn.style.transform = '');
+    });
+  }
+
+  // línea del método ligada al scroll
+  const fill = document.getElementById('spineFill');
+  const mbody = document.querySelector('.metodo-body');
+  function spine(){
+    if(!mbody) return;
+    const r = mbody.getBoundingClientRect();
+    const p = Math.min(Math.max((innerHeight*0.75 - r.top)/(r.height), 0), 1);
+    fill.style.height = (p*100)+'%';
+  }
+  window.addEventListener('scroll', spine, { passive:true }); spine();
+
+  // reveal general (se repite cada vez que entra/sale de pantalla)
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    const cls = (e.target.classList.contains('will-reveal') || e.target.classList.contains('section-margin')) ? 'reveal-in' : 'reveal';
+    e.target.classList.toggle(cls, e.isIntersecting);
+  }), { threshold: 0.15 });
+  document.querySelectorAll('.ficha,.articulo,.declara').forEach(el => io.observe(el));
+  document.querySelectorAll('.block h2,.section-margin,.problema-cierre,.destacado').forEach(el => { if(!el.classList.contains('destacado')) el.classList.add('will-reveal'); io.observe(el); });
+</script>
+
+</body>
+</html>
