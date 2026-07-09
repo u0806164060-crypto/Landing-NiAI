@@ -77,27 +77,6 @@
     --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,monospace;
     --max-w:1120px; --p-rgb:20,110,79;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper:#0E1A15; --paper-2:#122019; --ink:#F2EEE3;
-      --ink-mut:rgba(242,238,227,.66); --ink-mut-2:rgba(242,238,227,.4);
-      --jade:#3FCB9C; --jade-br:#4FE0AC; --gold:#D8B87C; --gold-soft:#D8B87C;
-      --line:#243A30; --panel:#05100B; --p-rgb:63,203,156;
-    }
-  }
-  :root[data-theme="dark"]{
-    --paper:#0E1A15; --paper-2:#122019; --ink:#F2EEE3;
-    --ink-mut:rgba(242,238,227,.66); --ink-mut-2:rgba(242,238,227,.4);
-    --jade:#3FCB9C; --jade-br:#4FE0AC; --gold:#D8B87C; --gold-soft:#D8B87C;
-    --line:#243A30; --panel:#05100B; --p-rgb:63,203,156;
-  }
-  :root[data-theme="light"]{
-    --paper:#F5F0E6; --paper-2:#ECE4D2; --ink:#1B211F;
-    --ink-mut:rgba(27,33,31,.64); --ink-mut-2:rgba(27,33,31,.42);
-    --jade:#146E4F; --jade-br:#1F8A63; --gold:#9C7635; --gold-soft:#C9A86A;
-    --line:#D9CFB6; --panel:#0C1310; --p-rgb:20,110,79;
-  }
-
   body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   a { color:inherit; text-decoration:none; }
   .wrap { max-width:var(--max-w); margin:0 auto; padding:0 2rem; }
@@ -127,9 +106,6 @@
   .lang-toggle button { background:transparent; color:var(--ink-mut); border:none; padding:7px 13px; font-family:var(--mono); font-size:.75rem; font-weight:600; letter-spacing:1px; cursor:pointer; transition:background .2s,color .2s; }
   .lang-toggle button.active { background:var(--jade); color:var(--paper); }
   .lang-toggle button:not(.active):hover { color:var(--ink); }
-  .theme-btn { background:transparent; border:1px solid var(--line); border-radius:4px; padding:7px 13px; font-family:var(--mono); font-size:.75rem; letter-spacing:1px; color:var(--ink-mut); cursor:pointer; transition:color .2s,border-color .2s; }
-  .theme-btn:hover { color:var(--ink); border-color:var(--ink-mut-2); }
-
   .hero { position:relative; min-height:100vh; display:flex; align-items:center; padding:150px 0 120px; overflow:hidden; }
   .hero-canvas { position:absolute; inset:0; z-index:1; width:100%; height:100%; }
   .hero-glow { position:absolute; inset:0; z-index:0; background:radial-gradient(ellipse 50% 45% at 72% 30%, rgba(var(--p-rgb),.14), transparent 65%); }
@@ -309,7 +285,6 @@
         <button data-setlang="es" class="active">ES</button>
         <button data-setlang="en">EN</button>
       </div>
-      <button class="theme-btn" id="themeBtn" data-hot data-es="MODO" data-en="THEME">MODO</button>
     </div>
   </div>
 </header>
@@ -623,13 +598,6 @@
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
 
-  // tema
-  document.getElementById('themeBtn').addEventListener('click', () => {
-    const cur = document.documentElement.getAttribute('data-theme');
-    const isDark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  });
-
   // overlay de contacto (abrir con cualquier botón que apunte a #contacto)
   (function () {
     const overlay = document.getElementById('contacto');
@@ -697,7 +665,7 @@
     if (!canvas || reduce) return;
     const ctx = canvas.getContext('2d');
     let w, h, dpr, nodes = []; const mouse = { x:-9999, y:-9999 };
-    function col(){ const t = document.documentElement.getAttribute('data-theme'); const d = t ? t==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; return d ? [63,203,156] : [20,110,79]; }
+    function col(){ return [20,110,79]; }
     function resize(){
       dpr = Math.min(devicePixelRatio||1, 2); w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w*dpr; canvas.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
