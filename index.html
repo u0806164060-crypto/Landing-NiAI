@@ -13,6 +13,8 @@
 <meta property="og:description" content="Diagnóstico inicial de IA y ciberseguridad para asesorías, gestorías, despachos y pymes. Análisis gratuito y sin compromiso, resultados en 24-48 horas.">
 <meta property="og:url" content="https://niaipartners.com/">
 <meta property="og:image" content="https://niaipartners.com/og-image.jpg">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ni.AI Partners · Diagnóstico IA y Cyber para pymes">
@@ -29,7 +31,9 @@
   "email": "Ni.AI.Partners@gmail.com",
   "description": "Diagnóstico inicial de IA y ciberseguridad para asesorías, gestorías, despachos y pymes en general.",
   "areaServed": "ES",
-  "sameAs": []
+  "sameAs": [
+    "https://www.linkedin.com/in/ruben-zappala-lópez-4673a9407"
+  ]
 }
 </script>
 
@@ -181,9 +185,10 @@
   .block h2 em { font-style:normal; color:var(--jade); }
 
   .ficha-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--line); border:1px solid var(--line); perspective:1000px; }
-  .ficha { position:relative; background:var(--paper); padding:38px 34px 34px; opacity:0; transform:translateY(28px); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .3s; transform-style:preserve-3d; }
-  .ficha:nth-child(2){ transition-delay:.08s } .ficha:nth-child(3){ transition-delay:.16s } .ficha:nth-child(4){ transition-delay:.24s }
-  .ficha.reveal { opacity:1; transform:translateY(0); }
+  /* §01 Hallazgos: aparecen desenfocadas y se van enfocando, sin moverse */
+  .ficha { position:relative; background:var(--paper); padding:38px 34px 34px; opacity:0; filter:blur(10px); transition:opacity 1s ease, filter 1.1s ease, box-shadow .3s; transform-style:preserve-3d; }
+  .ficha:nth-child(2){ transition-delay:.15s } .ficha:nth-child(3){ transition-delay:.3s } .ficha:nth-child(4){ transition-delay:.45s }
+  .ficha.reveal { opacity:1; filter:blur(0); }
   .ficha .tab { position:absolute; top:-1px; left:34px; font-family:var(--mono); font-size:.68rem; letter-spacing:1px; color:var(--paper); background:var(--jade); padding:4px 10px; border-radius:0 0 3px 3px; }
   .ficha.gold .tab{ background:var(--gold); }
   .ficha h3 { font-family:var(--serif); font-size:1.28rem; font-weight:600; line-height:1.28; min-height:3.28em; display:flex; align-items:flex-end; margin:14px 0 12px; letter-spacing:-.2px; transform:translateZ(24px); }
@@ -198,10 +203,13 @@
   .entregables { background:var(--paper-2); }
   .entregables .articulo:first-child{ border-top:none; }
   .declaraciones { display:grid; gap:16px; max-width:700px; }
-  .declara { background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--gold-soft); border-radius:4px; padding:24px 28px; font-size:1.06rem; color:var(--ink-mut); opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .5s cubic-bezier(.2,.7,.2,1), border-left-color .3s; }
+  /* §02 De persona a persona: la línea dorada se "dibuja" como si fuera tinta */
+  .declara { position:relative; background:var(--paper); border:1px solid var(--line); border-left:3px solid transparent; border-radius:4px; padding:24px 28px; font-size:1.06rem; color:var(--ink-mut); opacity:0; transform:translateX(-14px); filter:blur(4px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
+  .declara::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--gold-soft); transform:scaleY(0); transform-origin:top; transition:transform .5s ease .15s, background .3s; }
   .declara:nth-child(2){ transition-delay:.08s } .declara:nth-child(3){ transition-delay:.16s } .declara:nth-child(4){ transition-delay:.24s }
-  .declara.reveal { opacity:1; transform:none; }
-  .declara.reveal:hover { border-left-color:var(--jade); transition-delay:0s; }
+  .declara.reveal { opacity:1; transform:none; filter:blur(0); }
+  .declara.reveal::before { transform:scaleY(1); }
+  .declara.reveal:hover::before { background:var(--jade); }
   .declara strong{ color:var(--ink); font-weight:600; }
   .destacado { font-family:var(--serif); font-size:clamp(1.15rem,2.2vw,1.4rem); font-weight:600; color:var(--ink); margin:34px 0 0; max-width:620px; line-height:1.4; }
   .confianza .cta{ margin-top:36px; }
@@ -209,13 +217,22 @@
   .metodo-body { position:relative; padding-left:26px; }
   .spine { position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--line); }
   .spine-fill { position:absolute; left:0; top:0; width:100%; height:0; background:linear-gradient(var(--jade),var(--gold)); box-shadow:0 0 10px rgba(var(--p-rgb),.4); }
-  .articulo { display:grid; grid-template-columns:90px 1fr; gap:28px; padding:30px 0; border-top:1px solid var(--line); opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
-  .articulo.reveal{ opacity:1; transform:none; }
+  .articulo { position:relative; display:grid; grid-template-columns:90px 1fr; gap:28px; padding:30px 0; border-top:1px solid var(--line); }
   .articulo:last-child{ border-bottom:1px solid var(--line); }
   .articulo .art-label{ font-family:var(--mono); font-size:.85rem; color:var(--gold); letter-spacing:.5px; padding-top:4px; }
   .articulo.cyber .art-label{ color:var(--jade); }
   .articulo h3{ font-family:var(--serif); font-size:1.25rem; font-weight:600; margin-bottom:8px; }
   .articulo p{ color:var(--ink-mut); font-size:1rem; max-width:620px; }
+
+  /* §03 Método: la franja opaca se retira, como si se "descubriera" un texto redactado */
+  .metodo .articulo::after { content:''; position:absolute; inset:0; background:var(--paper); transform-origin:right; transform:scaleX(1); transition:transform .65s cubic-bezier(.65,0,.35,1); z-index:2; pointer-events:none; }
+  .metodo .articulo.reveal::after { transform:scaleX(0); }
+
+  /* §04 Quick Win: un texto entra desde la izquierda y el otro desde la derecha, despacio */
+  .entregables .articulo { opacity:0; transition:opacity 1.1s ease, transform 1.2s cubic-bezier(.2,.8,.2,1); }
+  .entregables .articulo:nth-child(1){ transform:translateX(-90px); }
+  .entregables .articulo:nth-child(2){ transform:translateX(90px); transition-delay:.15s }
+  .entregables .articulo.reveal { opacity:1; transform:none; }
 
   .cierre { background:var(--panel); color:var(--panel-txt); overflow:hidden; border-top:1px solid var(--line); padding:120px 0; }
   .cierre .aurora { position:absolute; inset:-40%; z-index:0; opacity:.8; background:radial-gradient(ellipse 42% 38% at 74% 26%, rgba(31,138,99,.28), transparent 66%), radial-gradient(ellipse 38% 32% at 16% 80%, rgba(201,168,106,.2), transparent 66%); animation:aurora 15s ease-in-out infinite alternate; }
@@ -229,8 +246,11 @@
   .cierre .cta{ background:var(--jade-br); color:#06110C; }
 
   /* formulario (overlay a pantalla completa) */
-  .contacto, .legal-overlay { position:fixed; inset:0; z-index:600; background:var(--paper); overflow-y:auto; opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s ease; }
-  .contacto.open, .legal-overlay.open { opacity:1; visibility:visible; }
+  .contacto, .legal-overlay { position:fixed; inset:0; z-index:600; background:var(--paper); overflow-y:auto; opacity:0; visibility:hidden; transform:translateY(18px) scale(.985); transition:opacity .35s ease, visibility .35s ease, transform .4s cubic-bezier(.2,.8,.2,1); }
+  .contacto.open, .legal-overlay.open { opacity:1; visibility:visible; transform:none; }
+  /* Formulario: el overlay entra deslizándose y cada campo aparece en cascada */
+  .contacto .stamp, .contacto h2, .contacto .sub, .form-field, .contacto form .cta, .form-note { opacity:0; transform:translateY(16px); transition:opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+  .contacto .stamp.in, .contacto h2.in, .contacto .sub.in, .form-field.in, .contacto form .cta.in, .form-note.in { opacity:1; transform:none; }
   body.no-scroll { overflow:hidden; }
   .overlay-bar { position:sticky; top:0; z-index:2; background:color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
   .overlay-bar-inner { max-width:620px; margin:0 auto; padding:0 2rem; height:76px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
@@ -296,7 +316,11 @@
     .hero-canvas,.cur-dot,.cur-ring{ display:none; }
     .cierre .aurora{ animation:none; }
     *{ transition:none !important; }
-    .hero h1 .line>span,.hero .lead,.hero .cta,.will-reveal,.ficha,.articulo,.declara{ opacity:1 !important; transform:none !important; }
+    .hero h1 .line>span,.hero .lead,.hero .cta,.will-reveal,.ficha,.articulo,.declara{ opacity:1 !important; transform:none !important; filter:none !important; }
+    .declara::before{ transform:scaleY(1) !important; }
+    .metodo .articulo::after{ transform:scaleX(0) !important; }
+    .contacto,.legal-overlay{ transform:none !important; }
+    .contacto .stamp,.contacto h2,.contacto .sub,.form-field,.contacto form .cta,.form-note{ opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
@@ -385,14 +409,14 @@
 <section class="block entregables">
   <div class="wrap">
     <div class="section-margin"><span class="num">§ 04</span><span class="rule"></span><span class="label" data-es="Entregables" data-en="Deliverables">Entregables</span></div>
-    <h2 data-es="No te prometemos magia. Te damos un <em>Quick Win</em> real." data-en="We don't promise magic. We give you a real <em>Quick Win</em>.">No te prometemos magia. Te damos un <em>Quick Win</em> real.</h2>
+    <h2 data-es="Sin humo. Te ofrecemos un <em>diagnóstico</em> real de tu despacho." data-en="No smoke and mirrors. We offer a real <em>diagnosis</em> of your firm.">Sin humo. Te ofrecemos un <em>diagnóstico</em> real de tu despacho.</h2>
     <div>
       <div class="articulo"><div class="art-label">Paso 1</div><div><h3 data-es="Una llamada de 20-30 minutos" data-en="A 20-30 minute call">Una llamada de 20-30 minutos</h3><p data-es="Escuchamos cómo trabaja tu despacho hoy, qué tareas se repiten, dónde se pierde tiempo y qué te preocupa de verdad." data-en="We listen to how your firm works today, what tasks repeat, where time gets lost and what really worries you.">Escuchamos cómo trabaja tu despacho hoy, qué tareas se repiten, dónde se pierde tiempo y qué te preocupa de verdad.</p></div></div>
-      <div class="articulo"><div class="art-label">Paso 2</div><div><h3 data-es="Tu Quick Win, al día siguiente" data-en="Your Quick Win, the next day">Tu Quick Win, al día siguiente</h3><p data-es="Te enviamos la mejora concreta con más impacto que puedes aplicar ya, sin compromiso. No es el diagnóstico completo, es el primer paso real." data-en="We send you the concrete improvement with the most impact you can apply right away, no strings attached. It's not the full diagnosis, it's the real first step.">Te enviamos la mejora concreta con más impacto que puedes aplicar ya, sin compromiso. No es el diagnóstico completo, es el primer paso real.</p></div></div>
+      <div class="articulo"><div class="art-label">Paso 2</div><div><h3 data-es="Tus primeras conclusiones, en 24-48 horas" data-en="Your first findings, within 24-48 hours">Tus primeras conclusiones, en 24-48 horas</h3><p data-es="Te enviamos por escrito lo que hemos detectado y por dónde empezar, sin compromiso. Es el primer paso de tu diagnóstico, no una venta." data-en="We send you in writing what we've found and where to start, no strings attached. It's the first step of your diagnosis, not a sales pitch.">Te enviamos por escrito lo que hemos detectado y por dónde empezar, sin compromiso. Es el primer paso de tu diagnóstico, no una venta.</p></div></div>
     </div>
     <div class="problema-cierre">
       <p data-es="Sin informes eternos. Sin letra pequeña." data-en="No endless reports. No fine print.">Sin informes eternos. Sin letra pequeña.</p>
-      <a href="#contacto" class="cta" data-hot><span data-es="Quiero mi Quick Win" data-en="I want my Quick Win">Quiero mi Quick Win</span> <span class="seal">→</span></a>
+      <a href="#contacto" class="cta" data-hot><span data-es="Quiero mi diagnóstico" data-en="I want my diagnosis">Quiero mi diagnóstico</span> <span class="seal">→</span></a>
     </div>
   </div>
 </section>
@@ -629,8 +653,15 @@
   // overlay de contacto (abrir con cualquier botón que apunte a #contacto)
   (function () {
     const overlay = document.getElementById('contacto');
-    const open = () => { overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('no-scroll'); };
-    const close = () => { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true'); document.body.classList.remove('no-scroll'); };
+    const seq = overlay.querySelectorAll('.stamp, h2, .sub, .form-field, form .cta, .form-note');
+    const open = () => {
+      overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('no-scroll');
+      seq.forEach((el, i) => { el.classList.remove('in'); setTimeout(() => el.classList.add('in'), 150 + i * 70); });
+    };
+    const close = () => {
+      overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true'); document.body.classList.remove('no-scroll');
+      seq.forEach(el => el.classList.remove('in'));
+    };
     document.querySelectorAll('a[href="#contacto"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(); }));
     document.querySelectorAll('[data-close-contacto]').forEach(el => el.addEventListener('click', close));
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
