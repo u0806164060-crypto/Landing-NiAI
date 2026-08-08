@@ -590,7 +590,7 @@
       try {
         const res = await fetch(WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': '9f3a7c2e-8b4d-41f6-a0c9-3e7d5f2b1a68' },
           body: JSON.stringify({
             nombre: form.nombre.value,
             contacto: form.contacto.value,
