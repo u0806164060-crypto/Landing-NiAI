@@ -1,0 +1,10 @@
+# Lo que NO se publica en la web
+.git
+.gitignore
+.dockerignore
+.DS_Store
+Dockerfile
+nginx.conf
+CLAUDE.md
+*.txt
+borradores-Landing
