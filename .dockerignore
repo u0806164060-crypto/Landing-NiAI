@@ -4,7 +4,6 @@
 .dockerignore
 .DS_Store
 Dockerfile
-nginx.conf
 CLAUDE.md
 *.txt
 borradores-Landing
