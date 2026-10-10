@@ -205,6 +205,7 @@
   (function () {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const wait = ms => new Promise(r => setTimeout(r, ms));
+    const tr = (es, en) => document.documentElement.lang === 'en' ? en : es;
   const players = {
     async docs(el, run) {
       const files = el.querySelectorAll('.file'), folds = el.querySelectorAll('.fold'), done = el.querySelector('.statusbar b'), pend = el.querySelector('.pend');
@@ -217,7 +218,7 @@
       for (let i = 0; i < files.length; i++) {
         if (run.stop) return;
         const f = files[i], chip = f.querySelector('.chip'), k = +f.dataset.f;
-        f.classList.add('active'); chip.className = 'chip wait on'; chip.textContent = 'Leyendo…';
+        f.classList.add('active'); chip.className = 'chip wait on'; chip.textContent = tr('Leyendo…', 'Reading…');
         await wait(900); if (run.stop) return;
         chip.className = 'chip go on'; chip.textContent = '→ ' + names[k];
         await wait(700); if (run.stop) return;
@@ -232,11 +233,11 @@
       const nw = el.querySelector('.msg.new'), empty = el.querySelector('.empty'), open = el.querySelector('.mail-open');
       const draft = el.querySelector('.draft'), txt = draft.querySelector('.txt'), btn = el.querySelector('.btn.pri');
       const toast = el.querySelector('.toast'), cur = el.querySelector('.cursor'), win = el.querySelector('.win');
-      const reply = 'Hola, Ana: tu expediente está en trámite. En cuanto tengamos respuesta te escribimos. Un saludo.';
+      const reply = tr('Hola, Ana: tu expediente está en trámite. En cuanto tengamos respuesta te escribimos. Un saludo.', "Hi Ana, your case is in progress. We'll write to you as soon as we hear back. Best regards.");
       const steps = el.querySelectorAll('.pasos li');
       const step = n => steps.forEach((li, i) => { li.classList.toggle('on', i === n); li.classList.toggle('done', i < n); });
       nw.classList.remove('on', 'sel'); open.classList.remove('on'); empty.style.display = ''; draft.classList.remove('on', 'sent'); txt.textContent = ''; step(-1);
-      draft.querySelector('.lbl').textContent = '✦ Respuesta preparada automáticamente';
+      draft.querySelector('.lbl').textContent = tr('✦ Respuesta preparada automáticamente', '✦ Reply prepared automatically');
       toast.classList.remove('on'); btn.classList.remove('glow'); cur.classList.remove('on');
       cur.style.transition = 'none'; cur.style.left = '62%'; cur.style.top = '92%'; void cur.offsetWidth; cur.style.transition = '';
       if (reduce) { nw.classList.add('on', 'sel'); empty.style.display = 'none'; open.classList.add('on'); draft.classList.add('on'); txt.textContent = reply; step(3); return; }
@@ -262,7 +263,7 @@
       await wait(1300); if (run.stop) return;
       btn.classList.remove('glow');
       btn.classList.add('press'); await wait(160); btn.classList.remove('press');
-      draft.classList.add('sent'); draft.querySelector('.lbl').textContent = '✓ Enviado · revisado por ti';
+      draft.classList.add('sent'); draft.querySelector('.lbl').textContent = tr('✓ Enviado · revisado por ti', '✓ Sent · reviewed by you');
       toast.classList.add('on'); step(3);
       await wait(900); cur.classList.remove('on');
       await wait(2500); toast.classList.remove('on');
@@ -270,15 +271,15 @@
     async voz(el, run) {
       const chat = el.querySelector('.s-chat'), lock = el.querySelector('.s-lock'), body = el.querySelector('.chat-body');
       const bubs = el.querySelectorAll('.bub'), typing = el.querySelector('.typing'), notif = el.querySelector('.notif'), hh = el.querySelector('.hh'), est = el.querySelector('.estado');
-      [chat, lock].forEach(x => x.classList.remove('on')); bubs.forEach(b => b.classList.remove('on')); typing.classList.remove('on'); notif.classList.remove('on'); hh.textContent = '21:47'; est.textContent = 'en línea';
+      [chat, lock].forEach(x => x.classList.remove('on')); bubs.forEach(b => b.classList.remove('on')); typing.classList.remove('on'); notif.classList.remove('on'); hh.textContent = '21:47'; est.textContent = tr('en línea', 'online');
       if (reduce) { lock.classList.add('on'); notif.classList.add('on'); hh.textContent = '08:00'; return; }
       chat.classList.add('on');
       for (const b of bubs) {
         await wait(b.classList.contains('a') ? 500 : 1100); if (run.stop) return;
         if (b.classList.contains('a')) {
-          est.textContent = 'escribiendo…'; body.appendChild(typing); typing.classList.add('on');
+          est.textContent = tr('escribiendo…', 'typing…'); body.appendChild(typing); typing.classList.add('on');
           await wait(1400); if (run.stop) return;
-          typing.classList.remove('on'); est.textContent = 'en línea';
+          typing.classList.remove('on'); est.textContent = tr('en línea', 'online');
         }
         b.classList.add('on');
         if (b.querySelector('.hm').textContent === '21:48') hh.textContent = '21:48';
@@ -316,6 +317,7 @@
       activate(keys[Math.floor(p * keys.length)]);
     }
     addEventListener('scroll', onScroll, { passive:true });
+    document.querySelectorAll('.lang-toggle button').forEach(b => b.addEventListener('click', () => keys.forEach(k => { if (plays[k].played && (!pinMode.matches || k === current)) plays[k].play(); })));
     document.querySelectorAll('.ej-tab').forEach(t => t.addEventListener('click', () => {
       const i = keys.indexOf(t.dataset.tab);
       if (pinMode.matches) {
