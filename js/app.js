@@ -1,9 +1,24 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarse = window.matchMedia('(pointer: coarse)').matches;
 
-  // formulario de contacto → webhook n8n → Airtable. Antispam: campo trampa "web" + tiempo mínimo
+  // formulario de contacto → webhook n8n (captación con UTMs) → Airtable. Antispam: campo trampa "web" + tiempo mínimo
   (function () {
-    const WEBHOOK_URL = 'https://n8n.n8nniaipartners.tech/webhook/landing-contacto';
+    const WEBHOOK_URL = 'https://n8n.n8nniaipartners.tech/webhook/captacion-leads';
+    const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    // las UTMs de la primera visita se guardan para la sesión, por si la URL las pierde antes de enviar
+    const tracking = (() => {
+      const params = new URLSearchParams(location.search);
+      let saved = {};
+      try { saved = JSON.parse(sessionStorage.getItem('niai_tracking') || '{}'); } catch (e) {}
+      if (UTM_KEYS.some(k => params.get(k))) {
+        saved = { full_url: location.href, referrer: document.referrer };
+        UTM_KEYS.forEach(k => { saved[k] = params.get(k) || ''; });
+      } else if (!saved.full_url) {
+        saved = { full_url: location.href, referrer: document.referrer };
+      }
+      try { sessionStorage.setItem('niai_tracking', JSON.stringify(saved)); } catch (e) {}
+      return saved;
+    })();
     const form = document.getElementById('contactForm');
     const status = document.getElementById('formStatus');
     if (!form) return;
@@ -30,11 +45,14 @@
           headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': '9f3a7c2e-8b4d-41f6-a0c9-3e7d5f2b1a68' },
           body: JSON.stringify({
             nombre: form.nombre.value,
-            contacto: form.contacto.value,
+            email: form.email.value,
+            telefono: form.telefono.value,
             empresa: form.empresa.value,
-            problema: form.problema.value,
+            mensaje: form.problema.value,
             web: form.web.value,
-            t
+            t,
+            page_url: tracking.full_url,
+            'Tracking Data': tracking
           })
         });
         if (!res.ok) throw new Error('webhook error');

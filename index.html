@@ -824,8 +824,12 @@
         <input id="f-nombre" type="text" name="nombre" required data-ph-es="Tu nombre y apellidos" data-ph-en="Your full name" placeholder="Tu nombre y apellidos">
       </div>
       <div class="form-field">
-        <label for="f-contacto" data-es="Email o teléfono" data-en="Email or phone">Email o teléfono</label>
-        <input id="f-contacto" type="text" name="contacto" required data-ph-es="Cómo prefieres que te contactemos" data-ph-en="How you'd prefer to be contacted" placeholder="Cómo prefieres que te contactemos">
+        <label for="f-email" data-es="Email" data-en="Email">Email</label>
+        <input id="f-email" type="email" name="email" required autocomplete="email" data-ph-es="tu@email.com" data-ph-en="you@email.com" placeholder="tu@email.com">
+      </div>
+      <div class="form-field">
+        <label for="f-telefono" data-es="Teléfono (opcional)" data-en="Phone (optional)">Teléfono (opcional)</label>
+        <input id="f-telefono" type="tel" name="telefono" autocomplete="tel" data-ph-es="Si prefieres que te llamemos" data-ph-en="If you'd rather we call you" placeholder="Si prefieres que te llamemos">
       </div>
       <div class="form-field">
         <label for="f-empresa" data-es="Nombre de la empresa o despacho" data-en="Company or firm name">Nombre de la empresa o despacho</label>
