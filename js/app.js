@@ -227,7 +227,7 @@
   const players = {
     async docs(el, run) {
       const files = el.querySelectorAll('.file'), folds = el.querySelectorAll('.fold'), done = el.querySelector('.statusbar b'), pend = el.querySelector('.pend');
-      const base = [4, 7, 2], names = ['García', 'López', 'Ruiz'];
+      const base = [4, 7, 2], names = [tr('Proveedores', 'Suppliers'), tr('Pedidos', 'Orders'), tr('Clientes', 'Clients')];
       files.forEach(f => { f.classList.remove('active', 'gone'); const c = f.querySelector('.chip'); c.className = 'chip'; c.textContent = ''; });
       folds.forEach((f, i) => { f.classList.remove('flash'); f.querySelector('.cnt').textContent = base[i]; });
       done.classList.remove('on'); pend.textContent = 3;
@@ -251,7 +251,7 @@
       const nw = el.querySelector('.msg.new'), empty = el.querySelector('.empty'), open = el.querySelector('.mail-open');
       const draft = el.querySelector('.draft'), txt = draft.querySelector('.txt'), btn = el.querySelector('.btn.pri');
       const toast = el.querySelector('.toast'), cur = el.querySelector('.cursor'), win = el.querySelector('.win');
-      const reply = tr('Hola, Ana: tu expediente está en trámite. En cuanto tengamos respuesta te escribimos. Un saludo.', "Hi Ana, your case is in progress. We'll write to you as soon as we hear back. Best regards.");
+      const reply = tr('Hola, Ana: tu pedido está en preparación. En cuanto salga, te enviamos el número de seguimiento. Un saludo.', "Hi Ana, your order is being prepared. As soon as it ships, we'll send you the tracking number. Best regards.");
       const steps = el.querySelectorAll('.pasos li');
       const step = n => steps.forEach((li, i) => { li.classList.toggle('on', i === n); li.classList.toggle('done', i < n); });
       nw.classList.remove('on', 'sel'); open.classList.remove('on'); empty.style.display = ''; draft.classList.remove('on', 'sent'); txt.textContent = ''; step(-1);
