@@ -39,7 +39,7 @@ header { position:fixed; top:0; left:0; right:0; z-index:200; transition:backgro
 header.scrolled { backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom-color:var(--line); background:color-mix(in srgb, var(--paper) 82%, transparent); }
 .header-inner { display:flex; align-items:center; justify-content:space-between; height:76px; gap:14px; }
 .logo { font-family:var(--logo-serif); font-size:1.35rem; font-weight:600; letter-spacing:-.2px; }
-.logo .ai{ color:var(--jade); } .logo .partners{ color:var(--ink-mut-2); font-style:italic; font-weight:400; }
+.logo:has(img){ display:inline-flex; align-items:center; gap:12px; } .logo img{ display:block; height:28px; width:auto; } .logo .logo-simbolo{ display:block; height:40px; aspect-ratio:553/594; background:linear-gradient(90deg,var(--jade),var(--gold)); -webkit-mask:url(/simbolo-zo-claro.png) center/contain no-repeat; mask:url(/simbolo-zo-claro.png) center/contain no-repeat; } .logo .logo-oscuro{ display:none; } html[data-theme="dark"] .logo .logo-claro{ display:none; } html[data-theme="dark"] .logo .logo-oscuro{ display:block; }
 .header-actions { display:flex; align-items:center; gap:12px; }
 .lang-toggle { display:flex; border:1px solid var(--line); border-radius:4px; overflow:hidden; }
 .lang-toggle button { background:transparent; color:var(--ink-mut); border:none; padding:7px 13px; font-family:var(--mono); font-size:.75rem; font-weight:600; letter-spacing:1px; cursor:pointer; transition:background .2s,color .2s; }
